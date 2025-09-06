@@ -1,6 +1,6 @@
 name: deploy-ml-model-in-aws
 
-ml-model:
+services:
   terraform:
     build: .
     image: deploy-ml-model-in-aws:dev
