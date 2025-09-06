@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML Prediction</title>
+<head>
+<body>
+    <div style="text-align: center;">
+        <h1>ML Prediction</h1>
+        <h2>Modelo de Machine Learning para Prever Se o Cliente Fará Outra Compra</h2>
+        <h3>Digite abaixo o Valor das 4 Últimas Compras do Cliente:</h3>
+        <form action="/predict" method="post">
+            <input type="number" min="0" step="any" name="feature1" placeholder="Última Compra" required="required">
+            <input type="number" min="0" step="any" name="feature2" placeholder="Penúltima Compra" required="required">
+            <input type="number" min="0" step="any" name="feature3" placeholder="Antepenúltima Compra" required="required">
+            <input type="number" min="0" step="any" name="feature4" placeholder="Quarta Última Compra" required="required">
+            <button type="submit">Prever</button>
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
