@@ -1,0 +1,13 @@
+name: deploy-ml-model-in-aws
+
+ml-model:
+  terraform:
+    build: .
+    image: deploy-ml-model-in-aws:dev
+    container_name: deploy-ml-model-in-aws
+    env_file:
+      - .env
+    volumes:
+      - .:/data-projects/di-deploy-ml-model-in-aws
+    restart: unless-stopped
+    command: ["tail", "-f", "/dev/null"]
