@@ -31,7 +31,7 @@ module "vpc" {
 
 
 module "ml_api_bucket" {
-  source = "./modules/api_bucket"
+  source = "./modules/ml_api_bucket"
   project_name = var.project_name
   environment = var.environment
 }
