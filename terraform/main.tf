@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "di-terraform-state-767397903600"
+    bucket = "di-terraform-states-767397903600"
     key = "deploy-ml-model-dev/terraform.tfstate"
     region = "us-east-2"
     encrypt  = true
