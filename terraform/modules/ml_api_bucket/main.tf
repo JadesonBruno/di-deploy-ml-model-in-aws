@@ -21,8 +21,8 @@ resource "aws_s3_bucket" "api" {
 }
 
 
-resource "aws_s3_bucket_public_access_block" "mwaa" {
-  bucket = aws_s3_bucket.mwaa.id
+resource "aws_s3_bucket_public_access_block" "api" {
+  bucket = aws_s3_bucket.api.id
   block_public_acls = true
   ignore_public_acls = true
   block_public_policy = true
@@ -30,8 +30,8 @@ resource "aws_s3_bucket_public_access_block" "mwaa" {
 }
 
 
-resource "aws_s3_bucket_versioning" "mwaa" {
-  bucket = aws_s3_bucket.mwaa.id
+resource "aws_s3_bucket_versioning" "api" {
+  bucket = aws_s3_bucket.api.id
   versioning_configuration {
     status = "Enabled"
   }
