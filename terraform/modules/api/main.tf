@@ -66,7 +66,8 @@ resource "aws_instance" "ml_api" {
                     fastapi \
                     uvicorn \
                     scikit-learn \
-                    python-multipart
+                    python-multipart \
+                    jinja2
                 sudo mkdir -p /data-projects/di-deploy-ml-model-in-aws
                 sudo aws s3 sync s3://${var.ml_api_bucket_name} /data-projects/di-deploy-ml-model-in-aws --recursive
                 cd /data-projects/di-deploy-ml-model-in-aws
