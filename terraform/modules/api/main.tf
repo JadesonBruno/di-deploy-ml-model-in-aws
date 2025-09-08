@@ -53,6 +53,7 @@ resource "aws_instance" "ml_api" {
     key_name = aws_key_pair.ml_api.key_name
     subnet_id = var.public_subnet_ids[0]
     vpc_security_group_ids = [aws_security_group.ml_api.id]
+    iam_instance_profile = aws_iam_instance_profile.ml_api.name
 
     user_data = <<-EOF
                 #!/bin/bash
