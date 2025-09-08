@@ -36,6 +36,17 @@ resource "aws_key_pair" "ml_api" {
 }
 
 
+# Save private key locally
+resource "local_file" "private_key" {
+  content = tls_private_key.ml_api.private_key_pem
+  filename = "${path.root}/keys/${var.project_name}-${var.environment}-ml-api-key.pem"
+
+  provisioner "local-exec" {
+    command = "chmod 400 ${path.root}/keys/${var.project_name}-${var.environment}-ml-api-key.pem"
+  }
+}
+
+
 resource "aws_instance" "ml_api" {
     ami = data.aws_ami.amazon_linux.id
     instance_type = var.instance_type
@@ -43,7 +54,6 @@ resource "aws_instance" "ml_api" {
     subnet_id = var.public_subnet_ids[0]
     vpc_security_group_ids = [aws_security_group.ml_api.id]
 
-    #
     user_data = <<-EOF
                 #!/bin/bash
                 sudo yum update -y
