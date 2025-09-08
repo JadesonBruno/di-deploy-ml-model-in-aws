@@ -1,20 +1,3 @@
-# Data source para AMI mais recente do Amazon Linux 2
-data "aws_ami" "amazon_linux" {
-    most_recent = true
-    owners = ["amazon"]
-
-    filter {
-        name = "name"
-        values = ["amzn2-ami-hvm-*-x86_64-gp2"]
-    }
-
-    filter {
-        name = "virtualization-type"
-        values = ["hvm"]
-    }
-}
-
-
 # Key Pair para SSH (gera chave automaticamente)
 resource "tls_private_key" "ml_api" {
     algorithm = "RSA"
@@ -48,7 +31,7 @@ resource "local_file" "private_key" {
 
 
 resource "aws_instance" "ml_api" {
-    ami = data.aws_ami.amazon_linux.id
+    ami = var.ami_id
     instance_type = var.instance_type
     key_name = aws_key_pair.ml_api.key_name
     subnet_id = var.public_subnet_ids[0]
