@@ -60,3 +60,17 @@ resource "aws_iam_role_policy_attachment" "ml_api" {
   role = aws_iam_role.ml_api.name
   policy_arn = aws_iam_policy.ml_api.arn
 }
+
+
+resource "aws_iam_instance_profile" "ml_api" {
+  name = "${var.project_name}-${var.environment}-ml-api-instance-profile"
+  role = aws_iam_role.ml_api.name
+
+  tags = {
+    Name  = "${var.project_name}-${var.environment}-ml-api-instance-profile"
+    Project = var.project_name
+    Environment = var.environment
+    Service = "ml-api"
+    Terraform = "true"
+  }
+}
