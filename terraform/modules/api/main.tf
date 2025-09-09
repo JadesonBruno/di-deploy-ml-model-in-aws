@@ -38,25 +38,11 @@ resource "aws_instance" "ml_api" {
     vpc_security_group_ids = [aws_security_group.ml_api.id]
     iam_instance_profile = aws_iam_instance_profile.ml_api.name
 
-    user_data = <<-EOF
-                #!/bin/bash
-                sudo yum update -y
-                sudo yum install -y \
-                    python3 \
-                    python3-pip \
-                    awscli
-                sudo pip3 install \
-                    fastapi \
-                    uvicorn \
-                    scikit-learn \
-                    python-multipart \
-                    jinja2
-                sudo mkdir -p /data-projects/di-deploy-ml-model-in-aws
-                sudo aws s3 sync s3://${var.ml_api_bucket_name} /data-projects/di-deploy-ml-model-in-aws --recursive
-                cd /data-projects/di-deploy-ml-model-in-aws
-                nohup uvicorn api.fastapi:app --host 0.0.0.0 --port 5000 --workers 4 > /data-projects/di-deploy-ml-model-in-aws/uvicorn.log 2>&1 &
-                echo "Uvicorn server started"
-                EOF
+    user_data = templatefile(
+        "${path.module}/user_data.sh", {
+            ml_api_bucket_name = var.ml_api_bucket_name
+        }
+    )
 
     tags = {
         Name = "${var.project_name}-${var.environment}-ml-api"
