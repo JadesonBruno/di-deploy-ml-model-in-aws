@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "api" {
   bucket = "${var.project_name}-${var.environment}-ml-api-bucket-${data.aws_caller_identity.current.account_id}"
 
   provisioner "local-exec" {
-    command = "aws s3 cp /data-projects/di-deploy-ml-model-in-aws/src s3://${aws_s3_bucket.api.bucket} --recursive"
+    command = "aws s3 cp /data-projects/di-deploy-ml-model-in-aws/ s3://${aws_s3_bucket.api.bucket} --recursive --exclude 'terraform/*'"
   }
 
   force_destroy = true
