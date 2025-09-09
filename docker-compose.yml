@@ -7,7 +7,5 @@ services:
     container_name: deploy-ml-model-in-aws
     env_file:
       - .env
-    volumes:
-      - .:/data-projects/di-deploy-ml-model-in-aws
     restart: unless-stopped
     command: ["tail", "-f", "/dev/null"]

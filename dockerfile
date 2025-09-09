@@ -35,3 +35,6 @@ RUN mkdir downloads && \
 
 # Set the working directory
 WORKDIR /data-projects/di-deploy-ml-model-in-aws
+
+# Copy the current directory contents into the container at /app
+COPY . /data-projects/di-deploy-ml-model-in-aws
