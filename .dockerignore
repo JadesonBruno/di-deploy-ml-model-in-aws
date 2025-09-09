@@ -1,1 +1,12 @@
+# Ignore files and directories that should not be included in the Docker image
 .venv
+.git
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.md
+docker-compose.yml
+dockerfile
+.env
+.dockerignore
+__pycache__/
