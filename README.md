@@ -412,6 +412,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 **Jadeson Bruno**
 - Email: jadesonbruno.a@outlook.com
 - GitHub: [@JadesonBruno](https://github.com/JadesonBruno)
+- LinkedIn: [Jadeson Bruno](https://www.linkedin.com/in/jadeson-silva/)
 
 ## Tecnologias Utilizadas
 
